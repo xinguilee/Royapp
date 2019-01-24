@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path: /smart
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/smart
+    username: demo
+    password: demo
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.demo.smart.model
+
+jwt:
+  header: Authorization
+  tokenHead: "Bearer "
+  secret: secret
+  expiration: expiration
+
+

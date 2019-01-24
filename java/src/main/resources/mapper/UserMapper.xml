@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.smart.mapper.UserMapper" >
+    <resultMap type="com.demo.smart.model.User" id="BaseResultMap">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        SELECT * FROM user
+    </select>
+
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        SELECT * FROM user WHERE username = #{ username }
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id, username, password, salt, creator, createtime,
+            <if test="lastmodifycreator != null">
+                lastmodifycreator,
+            </if>
+            <if test="lastmodifytime != null">
+                lastmodifytime,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{id}, #{username}, #{password}, #{salt}, #{creator}, #{createtime},
+            <if test="lastmodifycreator != null">
+                #{lastmodifycreator},
+            </if>
+            <if test="lastmodifytime != null">
+                #{lastmodifytime},
+            </if>
+        </trim>
+    </insert>
+</mapper>
